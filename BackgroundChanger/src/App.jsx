@@ -6,13 +6,15 @@ import { RecoilRoot } from "recoil";
 import "./App.css";
 import { BackgroundChanger } from "./components/BGChanger/BackgroundChanger";
 import { ParaGenerator } from "./components/ParaGenerator/ParaGenerator";
+import { GithubInfoCard } from "./components/GithubInfoCard/GithubInfoCard";
 
 function App() {
   return (
     <>
       <RecoilRoot>
         {/* <BackgroundChanger /> */}
-        <ParaGenerator/>
+        {/* <ParaGenerator/> */}
+        <GithubInfoCard/>
       </RecoilRoot>
     </>
   );
