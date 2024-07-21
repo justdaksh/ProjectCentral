@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { TextField, Box } from "@mui/material";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { checkOtpAtom } from "../../state/Otp";
 
 export const MyOTPField = React.memo(function MyOTPField() {
