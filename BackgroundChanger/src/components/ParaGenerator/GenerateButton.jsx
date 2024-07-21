@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import React from "react";
 
 
-export const GenerateButton = React.memo(function GenerateButton() {
+export const GenerateButton = React.memo(function GenerateButton({name}) {
     return (
       <Button
         type="submit"
@@ -17,7 +17,7 @@ export const GenerateButton = React.memo(function GenerateButton() {
           },
         }}
       >
-        Generate
+        {name}
       </Button>
     );
   });

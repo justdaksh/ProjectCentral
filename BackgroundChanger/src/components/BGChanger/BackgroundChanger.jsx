@@ -1,46 +1,61 @@
-import React, { useCallback } from "react";
-import { ButtonGroup } from "@mui/material";
-import Paper from "@mui/material/Paper";
+import { useCallback } from "react";
+import { ButtonGroup, Paper, Box, Typography } from "@mui/material";
+import { styled } from "@mui/system";
 import { MyButton } from "./Button";
 import { BackgroundManager } from "./BackgroundManager";
 import { useSetRecoilState } from "recoil";
 import { bgatom } from "../../state/bgatom";
 
+const ColorButton = styled(MyButton)(({ color }) => ({
+  backgroundColor: color,
+  color: color === 'yellow' || color === 'default' ? 'black' : 'white',
+  '&:hover': {
+    backgroundColor: color,
+    opacity: 0.9,
+  },
+}));
+
+const colors = ["red", "yellow", "black", "purple", "green", "blue", "white"];
+
 export function BackgroundChanger() {
   const setBgColor = useSetRecoilState(bgatom);
 
-  const handleColorChange = useCallback(
-    (color) => {
-      setBgColor(color);
-    },
-    [setBgColor]
-  );
+  const handleColorChange = useCallback((color) => setBgColor(color), [setBgColor]);
+
   return (
     <>
       <BackgroundManager />
-      <Paper
-        elevation={24}
+      <Box
         sx={{
           position: "fixed",
-          bottom: 10,
+          bottom: 20,
           left: 0,
           right: 0,
-          width: 700,
           display: "flex",
           justifyContent: "center",
-          transform: "translate(50%)",
         }}
       >
-        <ButtonGroup variant="outlined" aria-label="Basic button group">
-          <MyButton color="red" onClick={handleColorChange} />
-          <MyButton color="yellow" onClick={handleColorChange} />
-          <MyButton color="black" onClick={handleColorChange} />
-          <MyButton color="purple" onClick={handleColorChange} />
-          <MyButton color="green" onClick={handleColorChange} />
-          <MyButton color="blue" onClick={handleColorChange} />
-          <MyButton color="default" onClick={handleColorChange} />
-        </ButtonGroup>
-      </Paper>
+        <Paper
+          elevation={24}
+          sx={{
+            p: 3,
+            borderRadius: 4,
+            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+            backdropFilter: 'blur(10px)',
+          }}
+        >
+          <Typography variant="h6" align="center" gutterBottom>
+            Choose a Background Color
+          </Typography>
+          <ButtonGroup variant="contained" aria-label="color selection">
+            {colors.map((color) => (
+              <ColorButton key={color} color={color} onClick={() => handleColorChange(color)}>
+                {color}
+              </ColorButton>
+            ))}
+          </ButtonGroup>
+        </Paper>
+      </Box>
     </>
   );
 }

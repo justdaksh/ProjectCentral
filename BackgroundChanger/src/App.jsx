@@ -7,14 +7,24 @@ import "./App.css";
 import { BackgroundChanger } from "./components/BGChanger/BackgroundChanger";
 import { ParaGenerator } from "./components/ParaGenerator/ParaGenerator";
 import { GithubInfoCard } from "./components/GithubInfoCard/GithubInfoCard";
-
+import { Login } from "./components/Login/Login";
+import { Route, Routes } from 'react-router-dom';
+import { NoMatch } from "./components/NoMatchRoute/NoMatch";
+import { Navbar } from "./components/Navbar/Navbar";
+import { ProtectedOtpVerify } from "./components/Login/ProtectedOtpVerify";
 function App() {
   return (
     <>
       <RecoilRoot>
-        {/* <BackgroundChanger /> */}
-        {/* <ParaGenerator/> */}
-        <GithubInfoCard/>
+        <Navbar/>
+      <Routes>
+        <Route path="/BackgroundChanger" element={<BackgroundChanger/>} />
+        <Route path="/ParaGenerator" element={<ParaGenerator/>} />
+        <Route path="/GithubInfoCard" element={<GithubInfoCard/>} />
+        <Route path="/Login" element={<Login/>} />
+        <Route path="/Login/otpVerification" element={<ProtectedOtpVerify />} />
+        <Route path="*" element={<NoMatch />} />
+      </Routes>
       </RecoilRoot>
     </>
   );

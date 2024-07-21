@@ -7,16 +7,24 @@ export const MyTextField = React.memo(function MyTextField() {
   const [wordCountValue, setWordCountValue] = useRecoilState(wordAtom);
 
   const handleChange = (event) => {
-    setWordCountValue(parseInt(event.target.value, 10) || 0);
+    const value = event.target.value;
+    if (value === '' || (value.length <= 5 && /^\d+$/.test(value))) {
+      setWordCountValue(parseInt(value, 10) || 0);
+    }
   };
+
   return (
     <TextField
       fullWidth
       variant="outlined"
-      placeholder="Enter Number of Words"
-      value={wordCountValue}
+      placeholder="Enter a 5-digit number"
+      value={wordCountValue || ''}
       onChange={handleChange}
-      type="number"
+      type="text"
+      inputProps={{
+        maxLength: 5,
+        pattern: "\\d*"
+      }}
     />
   );
 });

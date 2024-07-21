@@ -29,7 +29,7 @@ export function InputName() {
         sx={{ width:500, display: "flex", alignItems: "center", flexDirection:"column", gap: 2 }}
       >
         <MyUsernameField />
-        <GenerateButton />
+        <GenerateButton name="Get Info"/>
       </Box>
     </>
   );
