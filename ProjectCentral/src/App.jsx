@@ -21,6 +21,7 @@ function App() {
         <Route path="/BackgroundChanger" element={<BackgroundChanger/>} />
         <Route path="/ParaGenerator" element={<ParaGenerator/>} />
         <Route path="/GithubInfoCard" element={<GithubInfoCard/>} />
+        <Route path="/Login" element={<Login/>} />
         <Route path="/Login/otpVerification" element={<ProtectedOtpVerify />} />
         <Route path="*" element={<NoMatch />} />
         <Route path="/" element={<Login/>} />
